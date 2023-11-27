@@ -148,7 +148,7 @@ class Board:
                 if not self.board[newPos]:
                     self.board[newPos], self.board[currentPos] = self.board[currentPos], 0
                     currentPos = newPos
-                elif self.board[newPos] == self.board[currentPos] and (newPos not in changedPos) and not hasChanged:
+                elif self.board[newPos] == self.board[currentPos] and self.board[newPos] != 2048 and (newPos not in changedPos) and not hasChanged:
                     self.board[newPos], self.board[currentPos] = 2 * self.board[newPos], 0
                     changedPos.append(newPos)
                     hasChanged = True
