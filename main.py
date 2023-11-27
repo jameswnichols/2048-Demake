@@ -134,9 +134,10 @@ class Board:
         #(0, -1) UP
         order = self.generateOrder(direction)
 
+        changedPos = []
+
         for position in order:
             currentPos = position
-            hasChanged = False
             while True:
                 newPos = add2DTuple(currentPos, direction)
 
@@ -146,9 +147,9 @@ class Board:
                 if not self.board[newPos]:
                     self.board[newPos], self.board[currentPos] = self.board[currentPos], 0
                     currentPos = newPos
-                elif self.board[newPos] == self.board[currentPos] and not hasChanged:
+                elif self.board[newPos] == self.board[currentPos] and newPos not in changedPos:
                     self.board[newPos], self.board[currentPos] = 2 * self.board[newPos], 0
-                    hasChanged = True
+                    changedPos.append(newPos)
                     currentPos = newPos
                 else:
                     break
